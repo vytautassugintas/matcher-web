@@ -1,0 +1,16 @@
+<form>
+  <div class="content">
+    <p>Please enter your display name</p>
+  </div>
+  <div class="control has-icon">
+    <input class="input" type="text" id="name" required
+           [(ngModel)]="credentials.name" name="name"
+           #name="ngModel" placeholder="Name">
+    <span class="icon is-small">
+      <i class="fa fa-user"></i>
+    </span>
+  </div>
+  <div class="control">
+    <button class="button is-primary has-text-centered" (click)="updateName(credentials.name)">Update</button>
+  </div>
+</form>

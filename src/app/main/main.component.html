@@ -1,3 +1,20 @@
-<p>
-  main works!
-</p>
+<div class="container">
+  <section class="section">
+    <ul>
+      <li *ngFor="let item of items | async">
+        {{ item.gameName }}
+        <p>{{ item.maxPlayers}}</p>
+      </li>
+    </ul>
+
+    <button class="button is-primary" [ngClass]="showLoader ? 'is-loading' : ''" (click)="save('New Game', 4)">Save</button>
+    <button class="button is-primary" [ngClass]="showLoader ? 'is-loading' : ''" (click)="update('Game update')">Update</button>
+    <button class="button is-primary" [ngClass]="showLoader ? 'is-loading' : ''" (click)="createGameRoom('Game1', 4)">Create game room</button>
+    <button class="button is-primary" [ngClass]="showLoader ? 'is-loading' : ''" (click)="logout()">Logout</button>
+
+    <p>With subscribe</p>
+    <h1>{{ roomSub?.gameName}}</h1>
+
+
+  </section>
+</div>

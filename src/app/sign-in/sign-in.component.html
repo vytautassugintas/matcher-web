@@ -1,0 +1,42 @@
+<div class="container">
+  <section class="section">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">Login</p>
+          </header>
+          <div class="card-content">
+            <form>
+              <div class="control has-icon">
+                <input class="input" type="email" id="email" required
+                       [(ngModel)]="credentials.email" name="email"
+                       #email="ngModel" placeholder="Email">
+                <span class="icon is-small">
+                  <i class="fa fa-envelope"></i>
+                </span>
+              </div>
+              <div class="control has-icon">
+                <input class="input" type="password" placeholder="Password"
+                       [(ngModel)]="credentials.password" name="password"
+                       #password="ngModel" placeholder="Password">
+                <span class="icon is-small">
+                  <i class="fa fa-lock"></i>
+                </span>
+              </div>
+              <div class="control">
+                <button class="button is-primary" (click)="login(credentials.email, credentials.password)">Login</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="has-text-centered">
+      <p>Don't have account?</p>
+      <a routerLink="/sign-up" routerLinkActive="active">Sign up</a>
+    </div>
+
+  </section>
+</div>
