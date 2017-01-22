@@ -11,6 +11,15 @@ export class AppComponent {
 
     item: FirebaseObjectObservable<any>;
 
+    public options = {
+      position: ["bottom", "left"],
+      timeOut: 5000,
+      showProgressBar: false,
+      preventDuplicates: true,
+      animate: "scale",
+      lastOnBottom: true
+    }
+
     constructor(private af: AngularFire, private router: Router) {
         this.item = af.database.object('/item');
         this.af.auth.subscribe(auth =>{

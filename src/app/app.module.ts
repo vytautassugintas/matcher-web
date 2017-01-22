@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import { MaterialModule } from '@angular/material';
+import { SimpleNotificationsModule, PushNotificationsModule } from 'angular2-notifications';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -60,7 +61,9 @@ const appRoutes: Routes = [
     HttpModule,
     AngularFireModule.initializeApp(myFirebaseConfig, myFirebaseAuthConfig),
     RouterModule.forRoot(appRoutes),
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    SimpleNotificationsModule,
+    PushNotificationsModule
   ],
   entryComponents: [NamePromptComponent],
   providers: [],
