@@ -44,14 +44,27 @@ export class MainComponent implements OnInit {
         this.items
           .subscribe(snapshots => {
             snapshots.forEach(snapshot => {
-              this.getJoinedPlayers(snapshot.val().joinedPlayers).forEach(item =>{
-                if(item.email != this.currentUser.auth.email){
-                  this.pushNotifications.create('Joined Queue', { body: item.email }).subscribe(
-                      res => console.log(res),
-                      err => console.log(err)
-                  )
-                }
-              })
+              if(this.userAlreadyInQueue(this.currentUser.uid, snapshot.val().joinedPlayers)){
+                  if(snapshot.val().maxPlayers <= this.getJoinedPlayers(snapshot.val().joinedPlayers).length){
+                    this.pushNotifications.create('All players joined', { body: 'Go Play ' + snapshot.val().gameName }).subscribe(
+                        res => console.log("Notification res: " + res),
+                        err => console.log("Notification err: " + err)
+                    )
+                  } else {
+                    this.pushNotifications.create('Players in queue', { body: 'In ' + snapshot.val().gameName + ' queue are ' + this.getJoinedPlayers(snapshot.val().joinedPlayers).length + ' players, game will start when ' + (snapshot.val().maxPlayers - this.getJoinedPlayers(snapshot.val().joinedPlayers).length) + ' more will join.' }).subscribe(
+                        res => console.log("Notification res: " + res),
+                        err => console.log("Notification err: " + err)
+                    )
+                  }
+              }
+              // this.getJoinedPlayers(snapshot.val().joinedPlayers).forEach(item =>{
+              //     if(item.email != this.currentUser.auth.email){
+              //       this.pushNotifications.create('Joined Queue', { body: item.email }).subscribe(
+              //           res => console.log(res),
+              //           err => console.log(err)
+              //       )
+              //     }
+              // })
 
               console.log(snapshot.key)
               console.log(snapshot.val())
