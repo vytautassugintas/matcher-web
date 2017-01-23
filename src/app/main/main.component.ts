@@ -34,7 +34,6 @@ export class MainComponent implements OnInit {
         this.af.auth.subscribe(auth => {
             if (auth) {
                 this.currentUser = auth;
-                console.log(this.currentUser);
             } else {
                 console.log("Not authenticated");
             }
@@ -57,33 +56,8 @@ export class MainComponent implements OnInit {
                     )
                   }
               }
-              // this.getJoinedPlayers(snapshot.val().joinedPlayers).forEach(item =>{
-              //     if(item.email != this.currentUser.auth.email){
-              //       this.pushNotifications.create('Joined Queue', { body: item.email }).subscribe(
-              //           res => console.log(res),
-              //           err => console.log(err)
-              //       )
-              //     }
-              // })
-
-              console.log(snapshot.key)
-              console.log(snapshot.val())
             });
           })
-
-        this.af.database.list('/items').subscribe(items => {
-            //TODO: check for changes and show notification
-            //this.pushNotifications.create('Joined Queue', { body: "New Player" }).subscribe(
-            //    res => console.log(res),
-            //    err => console.log(err)
-            //)
-        })
-
-        this.af.database.object('/room').subscribe(room => {
-            this.roomSub = room;
-            this.showLoader = false;
-        }
-        );
     }
 
     availableGameRooms = [];
