@@ -60,16 +60,6 @@ export class MainComponent implements OnInit {
           })
     }
 
-    availableGameRooms = [];
-    selectedGameRooms: any;
-
-    gameRoom = {
-        gameName: 'Name',
-        maxPlayers: 3,
-        joinedPlayers: 1,
-        roomCreationTimestamp: '2012-02-02'
-    }
-
     getPlayers(id: string) {
         this.af.database.list('/items/' + id + '/joinedPlayers');
     }
@@ -89,10 +79,6 @@ export class MainComponent implements OnInit {
             joinedPlayers: [],
             roomCreationTimestamp: new Date()
         });
-    }
-
-    loadAvailableGameRooms() {
-
     }
 
     joinQueue(room) {
@@ -140,10 +126,6 @@ export class MainComponent implements OnInit {
         let dialogRef = this.dialog.open(NamePromptComponent);
     }
 
-    navigateMain() {
-        this.router.navigate(['main']);
-    }
-
     public saveItem() {
         const itemObservable = this.af.database.object('/item');
         itemObservable.set({ name: 'ohter mother name!' });
@@ -151,6 +133,10 @@ export class MainComponent implements OnInit {
 
     public logout() {
         this.af.auth.logout();
+    }
+    
+    navigateMain() {
+        this.router.navigate(['main']);
     }
 
 }
